@@ -1,38 +1,53 @@
 # Minna-James-Heineman-Stiftung — Website
 
-A single-file static website. No build step, no dependencies, nothing to install. Everything — text, styling, and the logo — lives in `index.html`. Double-click it to open in any browser.
+A small static website — no build step, no dependencies. Every page is a self-contained HTML file with the logo embedded, so each one works on its own (locally or on GitHub Pages).
 
-Same design system as the Heineman Foundation site.
+## Pages
+
+| File | What it is |
+|------|------------|
+| `index.html` | Main page (About, History, Board, Grants, Publications, Contact) |
+| `cooperative-research-projects.html` | Grants sub-page: list of cooperative research projects |
+| `james-heineman-research-award.html` | Grants sub-page: award + awardees |
+| `dannie-heineman-award.html` | Grants sub-page: award + awardees (bilingual citations) |
+
+The three sub-pages are reachable from the **Grants** dropdown in the top navigation and from links within the Grants section of the main page.
 
 ## How to edit
 
-Open `index.html` in any text editor and search for what you want to change:
+Open any file in a text editor and search for what you want to change:
 
-| To change...              | Search for...                        |
-|---------------------------|--------------------------------------|
-| Contact email             | `mailto:`                            |
-| About text                | `id="about"`                         |
-| History text              | `id="history"`                       |
-| Board roster              | `class="board-officers"`             |
-| Grant programs            | `id="grants"`                        |
-| Publications              | `id="publications"`                  |
-| Colors and fonts          | `:root {` (near the top)             |
+| To change... | Search for... |
+|--------------|---------------|
+| Contact email | `mailto:` |
+| Board roster | `class="board-officers"` (officers) / `class="board-member"` (members) |
+| Grant program text | `id="grants"` in `index.html` |
+| An awardee or project | open the relevant sub-page and edit the entry |
+| Colors and fonts | `:root {` near the top of any file |
+
+### Board members
+
+Each board member is a small block: the name (with optional link) on the first line, and their title/affiliation on the second. To edit one, find `class="board-member"` and change the text inside `bm-name` and `bm-affil`. The `*` (Coordination Committee marker) is the `finance-star` span.
 
 ## Links to fill in
 
-Several links in the text (Max-Planck-Gesellschaft, Weizmann Institute, "Click here" lists, etc.) are placeholders pointing to `href="#"`. To make one active, search for `href="#"` and replace the `#` with the real URL. Each placeholder sits on the text it links, so they're easy to find in order.
+Many links in the body text (Max-Planck-Gesellschaft, Weizmann Institute, individual awardee pages, etc.) are placeholders pointing to `href="#"`. To make one active, search for `href="#"` and replace the `#` with the real URL. The links between the main page and the three Grants sub-pages are already wired up.
+
+## Editing note: the logo
+
+The logo is embedded directly in every page as base64 data, so it displays with no external file and works offline. If you ever replace the logo, it has to be updated in all four files (search for `data:image/png;base64,` in each).
 
 ## Hosting on GitHub Pages
 
-1. Create a new repository on GitHub and upload `index.html` to it.
+1. Upload all four `.html` files (and this README) to a GitHub repository — keep them in the same folder so the links between pages work.
 2. Go to **Settings → Pages**.
 3. Under **Source**, select branch `main` and folder `/ (root)`.
 4. Save. The site goes live at `https://<username>.github.io/<repo-name>/`.
 
-For a custom domain, add it under **Settings → Pages → Custom domain** and point your DNS at GitHub Pages.
+## A note on the Dannie Heineman Award page
 
-## Notes
+Each award citation is shown in the original German first, with an English translation in italics beneath it, matching the original site. If you'd prefer English-only (or German-only), let me know and it can be simplified.
 
-- The logo is embedded directly in the file, so nothing external is needed for it to display — it works offline too.
-- The two fonts (Fraunces and Inter) load from Google Fonts, which needs an internet connection. Offline, the page falls back to Georgia and your system's default sans-serif.
-- The bank/donation account details (IBAN, BIC) from the old site are intentionally left out. To add them, put them in the Contact section under the Donations heading.
+## A note on fonts
+
+The two fonts (Fraunces and Inter) load from Google Fonts, which needs an internet connection. Offline, pages fall back to Georgia and your system's default sans-serif. Everything else, including the logo, is self-contained.
